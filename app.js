@@ -38,16 +38,6 @@ let cart = []
 
 // SECTION FUNCTIONS
 
-function draw_cart(){
-let cart = document.getElementById("cart")
-let template = ``
-
-cart.forEach(item => {
-  
-});
-
-}
-
 function draw_total(){
 
 }
@@ -60,7 +50,7 @@ for (let i = 0; i < toppings.length; i++) {
   const t = toppings[i];
   template += `
   <div>
-  <img src="${t.image}">
+  <img src="${t.image}" height="150px">
   <div>${t.name}</div>
   <div>${t.price}</div>
   <button onclick="add_topping('${t.name}')">ADD</button>
@@ -87,9 +77,29 @@ function draw_ice_c(){
 
 function add_topping(name){
 
-let itemToAdd = toppings.find(t => t.name == name)
-console.log(itemToAdd);
+let item_to_add = toppings.find(t => t.name == name)
+console.log(item_to_add);
 
+let ice_in_cart = cart.find(p => p.name == name)
+
+cart.push({
+  name: item_to_add.name,
+  price: item_to_add.price,
+})
+
+
+}
+
+function draw_cart(){
+let cart_elem = document.getElementById("cart")
+let template = ``
+
+cart.forEach(item => {
+  template += `
+  <div>${item.name}</div>
+  `
+})
+console.log(cart);
 }
 
 function add_cone(){
